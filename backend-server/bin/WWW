@@ -1,0 +1,111 @@
+#!/usr/bin/env node
+var cluster = require("cluster");
+var http = require('http');
+var https = require('https');
+var server;
+var port;
+var numCPUs;
+var httpsServer;
+var ctr;
+var securePort = 443;
+var httpsOptions;
+var onError;
+var getEnvironment;
+var normalizePort;
+var onListening;
+var app;
+
+/* Event listener for HTTP server "listening" event. */
+onListening = function () {
+    var addr, bind;
+    addr = server.address();
+    bind = typeof addr === 'string'
+        ? 'pipe ' + addr
+        : 'port ' + addr.port;
+    console.log('Listening on ' + bind);
+};
+
+/* Event listener for HTTP server "error" event. */
+onError = function (error) {
+    var bind;
+    if (error.syscall !== 'listen') {
+        throw error;
+    }
+
+    bind = typeof port === 'string'
+        ? 'Pipe ' + port
+        : 'Port ' + port;
+
+    // handle specific listen errors with friendly messages
+    switch (error.code) {
+        case 'EACCES':
+            console.error(bind + ' requires elevated privileges');
+            process.exit(1);
+            break;
+        case 'EADDRINUSE':
+            console.error(bind + ' is already in use');
+            process.exit(1);
+            break;
+        default:
+            throw error;
+    }
+};
+
+/* Gets the environment that we are running on. */
+getEnvironment = function() {
+    var env = process.env.ENV || 'production';
+    console.log("Starting server in " + env + " mode");
+    return env;
+};
+
+/* Normalize a port into a number, string, or false */
+normalizePort = function (val) {
+    var port = parseInt(val, 10);
+    if (isNaN(port)) {
+        return val;
+    }
+    if (port >= 0) {
+        return port;
+    }
+    return 80;
+};
+
+process.env.ENV = getEnvironment();
+process.env.PORT = port = normalizePort(process.env.PORT || 80);
+numCPUs = require('os').cpus().length;
+
+const startServer = function() {
+    app = require('../app');
+
+    if (cluster.isMaster) {
+        console.log('Master cluster setting up ' + numCPUs + ' workers...');
+        for (ctr = 0; ctr < numCPUs; ctr++) {
+            cluster.fork();
+        }
+
+        cluster.on('online', function(worker) {
+            console.log('Worker ' + worker.process.pid + ' is online');
+        });
+
+        cluster.on('exit', function(worker, code, signal) {
+            console.log('Worker ' + worker.process.pid + ' died with code: ' + code + ', and signal: ' + signal);
+            console.log('Starting a new worker');
+            if (signal) {
+                console.log("worker was killed by signal: " + signal);
+            } else if( code !== 0 ) {
+                console.log("worker exited with error code: " + code);
+            } else {
+                console.log("worker normal exit!");
+            }
+            cluster.fork();
+        });
+    } else {
+        /* Workers can share any TCP connection, In this case its a HTTP server */
+        server = http.createServer(app);
+        server.listen(port, function() {
+            console.info('Process ' + process.pid + ' is listening to all incoming requests on port ' + port);
+        });
+        server.on('error', onError);
+        server.on('listening', onListening);
+    }
+}

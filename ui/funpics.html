@@ -1,0 +1,649 @@
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>YSB Picnic</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <script type="application/javascript" src="https://unpkg.com/react@16.0.0/umd/react.production.min.js"></script>
+        <script type="application/javascript" src="https://unpkg.com/react-dom@16.0.0/umd/react-dom.production.min.js"></script>
+        <script type="application/javascript" src="https://unpkg.com/babel-standalone@6.26.0/babel.js"></script>  
+                <!-- bootstrap v3.3.6 css -->
+                <link rel="stylesheet" href="css/bootstrap.min.css">
+                <!-- font-awesome css -->
+                <link rel="stylesheet" href="css/font-awesome.min.css">
+                <!-- animate css -->
+                <link rel="stylesheet" href="css/animate.css">
+                <!-- Main Menu css -->
+                <link rel="stylesheet" href="css/rsmenu-main.css">
+                <!-- rsmenu transitions css -->
+                <link rel="stylesheet" href="css/rsmenu-transitions.css">
+                <!-- hover-min css -->
+                <link rel="stylesheet" href="css/hover-min.css">
+                  <!-- magnific-popup css -->
+                <link rel="stylesheet" href="css/magnific-popup.css">
+                <!-- owl.carousel css -->
+                <link rel="stylesheet" href="css/owl.carousel.css">
+                <link rel="stylesheet" href="css/time-circles.css">
+                <!-- Slick css -->
+                <link rel="stylesheet" href="css/slick.css">
+                <!-- style css -->
+                <link rel="stylesheet" href="style.css">
+                <!-- responsive css -->
+                <link rel="stylesheet" href="css/responsive.css">
+                <style> 
+
+                    #loader {
+                        display: none;
+                        background-image: url("/css/ajax-loader.gif");
+                        width: 32px;
+                        height: 32px;
+                        margin: 0 auto;
+                    }
+                    #loaderText {
+                        display: none;
+                    }
+            
+                        /*assign full width inputs*/ 
+                        input[type=text], 
+                        input[type=password] { 
+                            width: 100%; 
+                            padding: 12px 20px; 
+                            margin: 8px 0; 
+                            display: inline-block; 
+                            border: 1px solid #ccc; 
+                            box-sizing: border-box; 
+                        } 
+                        
+                        /*set a style for the buttons*/ 
+                        .button-cs { 
+                            background-color: #2542C7; 
+                            color: white; 
+                            padding: 14px 20px; 
+                            margin: 8px 0; 
+                            border: none; 
+                            cursor: pointer; 
+                            width: 100%; 
+                        } 
+                        
+                        /* set a hover effect for the button*/ 
+                        button:hover { 
+                            opacity: 0.8; 
+                        } 
+                        
+                        /*set extra style for the cancel button*/ 
+                        .cancelbtn { 
+                            width: auto; 
+                            padding: 10px 18px; 
+                            background-color: #f44336; 
+                        } 
+                        
+                        /*centre the display image inside the container*/ 
+                        .imgcontainer { 
+                            text-align: center; 
+                            margin: 24px 0 12px 0; 
+                            position: relative; 
+                        } 
+                        
+                        /*set image properties*/ 
+                        img.avatar { 
+                            width: 40%; 
+                            border-radius: 50%; 
+                        } 
+                        
+                        /*set padding to the container*/ 
+                        .container { 
+                            padding: 16px; 
+                        } 
+                          
+                        /*set the forgot password text*/ 
+                        span.psw { 
+                            float: right; 
+                            padding-top: 16px; 
+                        } 
+                        
+                        /*set the Modal background*/ 
+                        .modal { 
+                            display: none; 
+                            position: fixed; 
+                            z-index: 1; 
+                            left: 0; 
+                            top: 0; 
+                            width: 100%; 
+                            height: 100%; 
+                            overflow: auto; 
+                            background-color: rgb(0, 0, 0); 
+                            background-color: rgba(0, 0, 0, 0.4); 
+                            padding-top: 60px; 
+                        } 
+                        
+                        /*style the model content box*/ 
+                        .modal-content { 
+                            background-color: #fefefe; 
+                            margin: 5% auto 15% auto; 
+                            border: 1px solid #888; 
+                            width: 80%; 
+                        } 
+                        
+                        /*style the close button*/ 
+                        .close { 
+                            position: absolute; 
+                            right: 25px; 
+                            top: 0; 
+                            color: #000; 
+                            font-size: 35px; 
+                            font-weight: bold; 
+                        } 
+                          
+                        .close:hover, 
+                        .close:focus { 
+                            color: red; 
+                            cursor: pointer; 
+                        } 
+                        
+                        /* add zoom animation*/ 
+                        .animate { 
+                            -webkit-animation: animatezoom 0.6s; 
+                            animation: animatezoom 0.6s 
+                        } 
+                          
+                        @-webkit-keyframes animatezoom { 
+                            from { 
+                                -webkit-transform: scale(0) 
+                            } 
+                            to { 
+                                -webkit-transform: scale(1) 
+                            } 
+                        } 
+                          
+                        @keyframes animatezoom { 
+                            from { 
+                                transform: scale(0) 
+                            } 
+                            to { 
+                                transform: scale(1) 
+                            } 
+                        } 
+                          
+                        @media screen and (max-width: 300px) { 
+                            span.psw { 
+                                display: block; 
+                                float: none; 
+                            } 
+                            .cancelbtn { 
+                                width: 100%; 
+                            } 
+                        } 
+                    </style> 
+                <style>
+                    body {
+                        font-family: sans-serif;
+                      }
+                      .responsive {
+                        width: 100%;
+                        height: auto;
+                      }
+                      
+                      input[type='file'] {
+                        display: none;
+                      }
+                      
+                      .file-info {
+                        font-size: 0.9em;
+                      }
+                      
+                      .browse-btn {
+                        background-color: #2542C7;
+                        color: #fff;
+                        min-height: 35px;
+                        padding: 10px;
+                        border: none;
+                        border-top-left-radius: 5px;
+                        border-bottom-left-radius: 5px;
+                      }
+                      
+                      .browse-btn:hover {
+                        background: #4ec0b4;
+                      }
+                      
+                      @media (max-width: 300px) {
+                        button {
+                          width: 100%;
+                          border-top-right-radius: 5px;
+                          border-bottom-left-radius: 0;
+                        }
+                        
+                        .file-info {
+                          display: block;
+                          margin: 10px 5px;
+                        }
+                      }
+                </style>
+
+      </head>
+      
+      <body>
+            <div id="preloader">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+            </div>
+            <header>
+                    <div class="header-middle-area menu-sticky">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-2 hidden-xs logo">
+                                        <a href="index.html"><img src="images/my-images/picnic1.png" alt="logo"></a>
+                                </div>
+                                <div class="col-md-10 col-sm-12 col-xs-12 mobile-menu">
+                                    <div class="main-menu">
+                                        <a class="rs-menu-toggle"><i class="fa fa-bars"></i>Menu</a>
+                                        <nav class="rs-menu">
+                                            <ul class="nav-menu">
+                                                <!-- Home -->
+                                                <li class="current-menu-item current_page_item">
+                                                    <a href="index.html">Home</a>
+                                                </li>
+                                                <!-- End Home -->
+                                                
+                                                <!-- Drop Down -->
+                                                <li>
+                                                    <a href="teamlist.html">Team List</a>
+                                                </li>
+                                                <li><a href="match-fixtures.html">Matches</a></li>
+                                                 <!-- Drop Down -->
+                                                 <li class="menu-item-has-children">
+                                                    <a href="#">Rules</a>
+                                                    <ul class="sub-menu">
+                                                        <li><a href="cricket.html">Cricket</a></li>
+                                                        <li><a href="soccer.html">Soccer</a></li>
+                                                        <li><a href="pictionary.html">Pictionary</a></li>
+                                                        <li><a href="balloonfight.html">Balloon Stomping</a></li>
+                                                    </ul>
+                                                </li>
+                                                <!--End Icons -->
+                                                 
+                                                <li><a class="animated  pulse infinite slower" href="funpics.html">Win 50$</a></li>
+                                                <li><a href="deserts.html">Dessert Competition</a></li>
+                                                <li class=""><a href="result.html">Result</a>
+                                                </li>
+            
+                                
+            
+            
+                                                <li><a href="contact.html">Contact</a></li>
+                                            </ul>
+                                       </nav>
+                                      <!--Header Search Start  here-->
+                                       <!--Header Search End  here--> 
+                                   </div>
+                               </div>
+                            </div>
+                        </div>
+                    </div>
+                </header>
+                <!-- <div style="display: flex; text-align: center; justify-content: center" id="postBtn">
+                        <button class="button-cs" data-toggle="collapse" data-target="#demo" style="border-radius: 25px; width: 50%;">Create post</button>
+                </div>   -->
+                
+                <div id="demo" class="collapse modal-content">
+                        <div id="loader"></div>
+                        <div style="text-align: center"> <span id="loaderText" style="color: green"> We're testing your patience </span> </div>
+                        <form id="fileUploadForm" method="post" enctype="multipart/form-data">
+                            <div class="container">
+                                <div class="col-xs-12 col-md-12">
+                                    <div class="col-xs-8  col-md-4 col-md-offset-3" style="padding: 10px 0; height: 60px;">
+                                        <input  class="form-control" placeholder="Enter Verizon Email"   type="text" id="myemail" name="myemail"  value=""  style="color: black"/> 
+                                    </div>
+                                    <div class="col-xs-4 col-sm-2" style="color: grey; height: 60px; line-height: 60px; font-size: 10px">@verizonmedia.com</div>
+                                </div>
+                                <div class="col-xs-12" style="text-align: center;"><span style="color: red; font-size:10px"> If you win, your gift card will be sent on this email Id</span></div>
+                                <div class="col-xs-12 col-md-6 col-md-offset-3" style="height: 120px; margin-top: 15px">
+                                    <textarea id="mycomment" placeholder="Comment / Hashtag" name="mycomment" style="color: grey; width: 100%; height: 100%"></textarea>
+                                </div>
+                                <div class="col-xs-12 col-md-6 col-md-offset-3" style="margin-top: 10px;">
+                                    <input type="file" accept="image/*" capture="camera" />
+                                    <div>
+                                        <input type="file" name="fileData" id="fileData" onchange="readURL(this);">
+                                        <button class="browse-btn button-cs">
+                                            Upload / Capture
+                                        </button>
+                                        </div>
+                                </div>
+                                <div class="col-xs-12" style="margin-top: 10px">
+                                    <div class="container">
+                                            <img id="preview" src="" alt=""  class="reponsive"/>
+                                    </div>
+                                        
+        
+                                        <div style="display: flex; flex-flow: row wrap; width: 100%; padding: 10px">
+                                                <div style="flex: 3; margin-right: 5%; text-align: right;">
+                                                    <img id="rotateImg" src="/images/my-images/rotate.png" style="width: 50px; height: 50px"/>
+                                                </div>
+                                                <div style="flex: 7">
+                                                        
+                                                        <div style="width: 20%;"> <input id="slide" type="range" min="0" max="100" step="1" value="10" onchange="updateSlider(this.value)"></div>
+                                                        <div> Apply Filter</div>
+                                                </div>
+                                        
+                                        </div>
+                                        <input type="hidden" id="rotateDegHidden"  name="rotateDegHidden"  value="" />
+                                        <div id="errorText" class="col-xs-12" style="font-size: 10px; display: none">
+                                                <span style="color:red">
+                                                    Email, Comment and File Upload are mandatory fields.
+                                                </span>
+                                        </div>
+                                        <div class="col-xs-12 text-center" style="margin-top: 10px">
+                                                <div class="col-xs-6 col-sm-3 col-sm-offset-3 "> 
+                                                        <input class="btn  btn-primary"  type="submit" name="myButton" id="myButton" value="POST" />
+                                                </div>
+                                                <div class="col-xs-6 col-sm-3"> 
+                                                    <button id="cancelId" class="btn btn-default">Cancel</button>
+                                                </div>
+                                            </div>  
+            
+                                </div>
+                            </div>
+                    </form>
+                </div>
+        <div id="root"></div>
+        <div id="return-to-top">
+                <span>Top</span>
+            </div>
+      
+      <script type="text/babel">
+      // Obtain the root 
+          const rootElement = document.getElementById('root')
+      // Create a ES6 class component  
+      
+      
+        class ShoppingList extends React.Component { 
+
+            constructor(props) {
+                super(props);
+                
+                this.likeClick = this.likeClick.bind(this);
+                let likeObj = JSON.parse(localStorage.getItem("likeObject"));
+                console.log('local storage is ', localStorage.likeObject);
+                if(likeObj == null || likeObj == undefined) {
+                    
+                    localStorage.setItem("likeObject", JSON.stringify({}));
+                    likeObj = {};
+                } 
+                this.state = { postList: [], likeObject : likeObj };
+            }
+            
+            setLikeStorage(postId) {
+                console.log('store post id ', postId);
+                const newLike = this.state.likeObject;
+                newLike[postId] = true;
+                const str = JSON.stringify(newLike);
+                console.log('new like ', str);
+                localStorage.setItem("likeObject", str);
+                this.setState({ likeObject: newLike});
+                console.log('storage now ', localStorage.getItem("likeObject"));
+                
+            }
+            
+            componentDidMount() {
+
+                this.setState({postList : []});
+
+
+                    console.log('settimeout called');
+                    fetch("https://heroku-comserver.herokuapp.com/api/getAllPosts")
+                    .then(res => res.json())
+                    .then(
+                        (result) => {
+                            console.log('test resp ', result);
+                            var reversed = result.reverse(); 
+                            this.setState({'postList' : reversed});
+                        },
+
+                        (error) => {
+                            this.setState({
+                                isLoaded: true,
+                                error
+                            });
+                        }
+                    )
+
+
+            }
+        
+            likeClick(postId) {
+                console.log('like clicked', postId);
+                fetch('https://heroku-comserver.herokuapp.com/api/liked', {
+                    method: 'POST',
+                    headers: {
+                      'Accept': 'application/json',
+                      'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        'postId': postId
+                    })
+                  }).then(res => res.json())
+                   .then(response => {
+                    console.log('response of like is',response);
+                    if(response && response.errorCode && response.errorCode == 1){
+                        alert("you have already liked this picture");
+                    }
+                  });
+                  this.setLikeStorage(postId);
+            }
+          render() {
+              console.log('its rendering', this.state); 
+
+              return (
+              <div className="shopping-list">
+                  <MyList postList={this.state.postList} likeClick={this.likeClick} likeObject={this.state.likeObject} />
+              </div>
+            );
+            } 
+          }
+          // Rendering parent list
+          function MyList (props) {
+            console.log('rendering child', props)
+            let renderList = props.postList.map((item, key) => {
+                return (<div key={item.id}>
+                     <PostBlock  post={item} likeClick={props.likeClick} likeObject={props.likeObject}/>
+                </div>);
+            });
+            return (
+                <div>
+                    { renderList }
+                </div>
+    
+            );
+        }
+        // Rendering individual post
+        function PostBlock (props) { 
+            console.log('post block ', props);
+            let likeElement = '';
+            if(props.likeObject[props.post.id]) {
+                likeElement = <i  style={{ color: "red", fontSize: "25px"}} className="fa fa-heart animated  pulse infinite slower" aria-hidden="true"></i> 
+            } else {
+                likeElement = <i  onClick={()=>{props.likeClick(props.post.id)}} style={{textShadow: "0 0 3px #000", color: "white", fontSize: "25px"}} className="fa fa-heart animated  pulse infinite slower" aria-hidden="true"></i> 
+            }
+            const greyscale = 'grayscale('+ props.post.greyscale +'%)';
+            const rotate = 'rotate('+ props.post.rotate +'deg)';
+            const imgStyle = {borderRadius: "6px", WebkitFilter: greyscale, WebkitTransform: rotate};
+            
+            return (
+                <div style={{ border: "1px solid #E1E1E1", backgroundColor: "#FCFCFC", borderRadius: "6px", margin: "1% 4%" }}>
+                    <div style={{overflow: "auto"}}>
+                        <img style={imgStyle} src={props.post.file_name} class="responsive"/>
+                    </div>
+
+
+                    <div style={{padding: '10px 2%'}}>
+                         <span style={{color:"black", fontSize: "15px", fontFamily: "FANTASY", letterSpacing: "1px"}}>{props.post.postcomment}</span> 
+                    </div>
+                </div>
+    
+            );
+        }
+
+
+      // Create a function to wrap up your component
+      function App(){
+        return(
+        <div>
+          <ShoppingList name="@luispagarcia on Dev.to!"/>
+        </div>
+        )
+      }
+      
+      // Use the ReactDOM.render to show your component on the browser
+          ReactDOM.render(
+            <App />,
+            
+            rootElement
+          )
+      </script>
+
+		<!-- End scrollUp  -->
+
+		<!-- all js here -->
+        <!-- jquery latest version -->
+        <script src="js/jquery.min.js"></script>
+        <script src="js/output.min.js"></script>
+        <script src="js/main.js"></script>
+        
+		
+        <script> 
+                var modal = document.getElementById('id01'); 
+                window.onclick = function(event) { 
+                    if (event.target == modal) { 
+                        modal.style.display = "none"; 
+                    } 
+                } 
+            </script>
+        <script>
+                var uploadButton = document.querySelector('.browse-btn');
+                var realInput = document.getElementById('fileData');
+                var preview = document.getElementById('preview');
+                var rotateDeg = 0;
+                
+                uploadButton.addEventListener('click', (event) => {
+                    event.preventDefault();
+                    event.stopPropagation()
+                    realInput.click();
+                });
+                
+                function readURL(input) {
+                    if (input.files && input.files[0]) {
+                        var reader = new FileReader();
+        
+                        reader.onload = function (e) {
+                            $('#preview')
+                                .attr('src', e.target.result);
+                        };
+        
+                        reader.readAsDataURL(input.files[0]);
+                    }
+                }
+                function updateSlider(slideAmount) {
+                    console.log('updateSlider ', slideAmount);
+                    preview.style.filter = "grayscale(" + slideAmount + "%)";
+                    preview.style.WebkitFilter = "grayscale(" + slideAmount + "%)";
+                }
+
+
+                    $(document).ready(function () {
+                        var mycomment =  $('#mycomment');
+                        var fileData =  $('#fileData');
+                        var myemail = $('#myemail');
+                        var loader = $("#loader");
+                        var loaderText = $("#loaderText");
+                        var errorText = $("#errorText");
+                        var postBtn = $("#postBtn");
+                        var rotateDegHidden = document.getElementById('rotateDegHidden');
+
+                        $("#rotateImg").click(function(event){
+                            rotateDeg += 90; 
+                            preview.style.transform = "rotate(" + rotateDeg + "deg)";
+                            preview.style.WebkitTransform = "rotate(" + rotateDeg + "deg)"; 
+                            rotateDegHidden.value = rotateDeg;
+                        });
+
+                        $("#cancelId").click(function (event) {
+                            event.preventDefault();
+                            $("#demo").removeClass("in");
+                        });
+                        
+                        $("#myButton").click(function (event) {
+                    
+                            //stop submit the form, we will post it manually.
+                            event.preventDefault();
+                            if (myemail.val() && mycomment.val() && fileData.val()) {
+                            loader.show();
+                            loaderText.show();
+                            $('html, body').animate({
+                                scrollTop: ($('#loader').first().offset().top)
+                            },500);
+                            // Get form
+                            var form = $('#fileUploadForm')[0];
+                    
+                            // Create an FormData object 
+                            var data = new FormData(form);
+                
+                    
+                            // disabled the submit button
+                            $("#myButton").prop("disabled", true);
+
+                            $.ajax({
+                                type: "POST",
+                                enctype: 'multipart/form-data',
+                                url: "https://heroku-comserver.herokuapp.com/api/photoUpload",
+                                data: data,
+                                processData: false,
+                                contentType: false,
+                                cache: false,
+                                timeout: 600000,
+                                success: function (data) {
+                                    console.log("SUCCESS : ", data);
+                                    if(data.errorCode && data.errorCode == 1) {
+                                        alert('you have already uploaded 2 pictures')
+                                    }
+                                    $("#myButton").prop("disabled", false);
+                                    $("#demo").removeClass("in");
+                                    loaderText.hide();
+                                    loader.hide();
+                                    fileData.val('');
+                                    preview.src = "#";
+    
+                                    mycomment.val('');
+                                    errorText.hide();
+                                    rotateDegHidden.value = 0;
+                                    preview.style.WebkitTransform = "rotate(0deg)"; 
+
+                                    //location.reload();
+
+                                },
+                                error: function (e) {
+                
+                                    console.log("ERROR : ", e);
+                                    $("#myButton").prop("disabled", false);
+                                    $("#demo").removeClass("in");
+                                    
+                                    loaderText.hide();
+                                    loader.hide();
+                    
+                                }
+                            });
+
+                            } else {
+                                errorText.show();
+                            }
+                    
+                        });
+                    
+                    });
+            </script>
+      
+      </body>
+      
+      </html>

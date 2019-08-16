@@ -1,0 +1,510 @@
+<!doctype html>
+<html class="no-js" lang="zxx" style="height: 100%; background-color: black">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="x-ua-compatible" content="ie=edge">
+		<title>YSB Picnic</title>
+		<meta name="description" content="">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="apple-touch-icon" href="apple-touch-icon.png">
+		<!-- Place favicon.ico in the root directory -->
+		<link rel="shortcut icon" type="image/x-icon" href="images/fav.png">    
+		<!-- bootstrap v3.3.6 css -->
+		<link rel="stylesheet" href="css/bootstrap.min.css">
+		<!-- font-awesome css -->
+		<link rel="stylesheet" href="css/font-awesome.min.css">
+		<!-- animate css -->
+		<link rel="stylesheet" href="css/animate.css">
+		<!-- Main Menu css -->
+		<link rel="stylesheet" href="css/rsmenu-main.css">
+		<!-- rsmenu transitions css -->
+		<link rel="stylesheet" href="css/rsmenu-transitions.css">
+		<!-- hover-min css -->
+		<link rel="stylesheet" href="css/hover-min.css">
+		  <!-- magnific-popup css -->
+		<link rel="stylesheet" href="css/magnific-popup.css">
+		<!-- owl.carousel css -->
+		<link rel="stylesheet" href="css/owl.carousel.css">
+		<link rel="stylesheet" href="css/time-circles.css">
+		<!-- Slick css -->
+		<link rel="stylesheet" href="css/slick.css">
+		<!-- style css -->
+		<link rel="stylesheet" href="style.css">
+		<!-- responsive css -->
+        <link rel="stylesheet" href="css/responsive.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+        <script src="js/ngStorage.min.js" type="text/javascript"></script>
+        <script src="js/postloader.js" type="text/javascript"></script>
+        <style> 
+    
+                /*assign full width inputs*/ 
+                input[type=text], 
+                input[type=password] { 
+                    width: 100%; 
+                    padding: 12px 20px; 
+                    margin: 8px 0; 
+                    display: inline-block; 
+                    border: 1px solid #ccc; 
+                    box-sizing: border-box; 
+                } 
+                
+                /*set a style for the buttons*/ 
+                button { 
+                    background-color: #4CAF50; 
+                    color: white; 
+                    padding: 14px 20px; 
+                    margin: 8px 0; 
+                    border: none; 
+                    cursor: pointer; 
+                    width: 100%; 
+                } 
+                
+                /* set a hover effect for the button*/ 
+                button:hover { 
+                    opacity: 0.8; 
+                } 
+                
+                /*set extra style for the cancel button*/ 
+                .cancelbtn { 
+                    width: auto; 
+                    padding: 10px 18px; 
+                    background-color: #f44336; 
+                } 
+                
+                /*centre the display image inside the container*/ 
+                .imgcontainer { 
+                    text-align: center; 
+                    margin: 24px 0 12px 0; 
+                    position: relative; 
+                } 
+                
+                /*set image properties*/ 
+                img.avatar { 
+                    width: 40%; 
+                    border-radius: 50%; 
+                } 
+                
+                /*set padding to the container*/ 
+                .container { 
+                    padding: 16px; 
+                } 
+                  
+                /*set the forgot password text*/ 
+                span.psw { 
+                    float: right; 
+                    padding-top: 16px; 
+                } 
+                
+                /*set the Modal background*/ 
+                .modal { 
+                    display: none; 
+                    position: fixed; 
+                    z-index: 1; 
+                    left: 0; 
+                    top: 0; 
+                    width: 100%; 
+                    height: 100%; 
+                    overflow: auto; 
+                    background-color: rgb(0, 0, 0); 
+                    background-color: rgba(0, 0, 0, 0.4); 
+                    padding-top: 60px; 
+                } 
+                
+                /*style the model content box*/ 
+                .modal-content { 
+                    background-color: #fefefe; 
+                    margin: 5% auto 15% auto; 
+                    border: 1px solid #888; 
+                    width: 80%; 
+                } 
+                
+                /*style the close button*/ 
+                .close { 
+                    position: absolute; 
+                    right: 25px; 
+                    top: 0; 
+                    color: #000; 
+                    font-size: 35px; 
+                    font-weight: bold; 
+                } 
+                  
+                .close:hover, 
+                .close:focus { 
+                    color: red; 
+                    cursor: pointer; 
+                } 
+                
+                /* add zoom animation*/ 
+                .animate { 
+                    -webkit-animation: animatezoom 0.6s; 
+                    animation: animatezoom 0.6s 
+                } 
+                  
+                @-webkit-keyframes animatezoom { 
+                    from { 
+                        -webkit-transform: scale(0) 
+                    } 
+                    to { 
+                        -webkit-transform: scale(1) 
+                    } 
+                } 
+                  
+                @keyframes animatezoom { 
+                    from { 
+                        transform: scale(0) 
+                    } 
+                    to { 
+                        transform: scale(1) 
+                    } 
+                } 
+                  
+                @media screen and (max-width: 300px) { 
+                    span.psw { 
+                        display: block; 
+                        float: none; 
+                    } 
+                    .cancelbtn { 
+                        width: 100%; 
+                    } 
+                } 
+            </style> 
+        <style>
+            body {
+                font-family: sans-serif;
+              }
+              .responsive {
+                width: 100%;
+                height: auto;
+              }
+              .input-container {
+                background-color: #EDEDED;
+                border: 1px solid #DFDFDF;
+                border-radius: 5px;
+              }
+              
+              input[type='file'] {
+                display: none;
+              }
+              
+              .file-info {
+                font-size: 0.9em;
+              }
+              
+              .browse-btn {
+                background: #03A595;
+                color: #fff;
+                min-height: 35px;
+                padding: 10px;
+                border: none;
+                border-top-left-radius: 5px;
+                border-bottom-left-radius: 5px;
+              }
+              
+              .browse-btn:hover {
+                background: #4ec0b4;
+              }
+              
+              @media (max-width: 300px) {
+                button {
+                  width: 100%;
+                  border-top-right-radius: 5px;
+                  border-bottom-left-radius: 0;
+                }
+                
+                .file-info {
+                  display: block;
+                  margin: 10px 5px;
+                }
+              }
+        </style>
+	</head>
+	<body class="home-two" style="height: 100%; background-color: black" ng-app="postApp" ng-controller="postCtrl">
+		<!--Preloader start here-->
+		<div id="preloader">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+		<!--Preloader area end here-->
+        
+		<!--Header area start here-->
+		<header>
+				<div class="header-middle-area menu-sticky">
+					<div class="container">
+						<div class="row">
+							<div class="col-md-2 col-sm-12 col-xs-12 logo">
+								<a href="index.html"><img src="images/my-images/picnic1.png" alt="logo"></a>
+							</div>
+							<div class="col-md-10 col-sm-12 col-xs-12 mobile-menu">
+								<div class="main-menu">
+									<a class="rs-menu-toggle"><i class="fa fa-bars"></i>Menu</a>
+									<nav class="rs-menu">
+										<ul class="nav-menu">
+											<!-- Home -->
+											<li class="current-menu-item current_page_item">
+												<a href="index.html">Home</a>
+											</li>
+											<!-- End Home -->
+											
+											<!-- Drop Down -->
+											<li class="menu-item-has-children">
+												<a href="#">Team List</a>
+												<ul class="sub-menu">
+												   <li><a href="red.html">Team Red</a></li> 
+												   <li><a href="yellow.html">Team Yellow</a></li> 
+												   <li><a href="green.html">Team Green</a></li> 
+												   <li><a href="blue.html">Team Blue</a></li> 
+												</ul>
+											</li>
+											<li><a href="match-fixtures.html">Matches</a></li>
+											 <!-- Drop Down -->
+											 <li class="menu-item-has-children">
+												<a href="#">Rules</a>
+												<ul class="sub-menu">
+													<li><a href="cricket.html">Cricket</a></li>
+													<li><a href="soccer.html">Soccer</a></li>
+													<li><a href="soccer.html">Pictionary</a></li>
+													<li><a href="soccer.html">Ballon Leg Fight</a></li>
+													<li><a href="soccer.html"> Tug of War</a></li>
+												</ul>
+											</li>
+											<!--End Icons -->
+											 
+	
+											<li class=""><a href="result.html">Result</a>
+											</li>
+	
+							
+	
+	
+											<li><a href="contact.html">Contact</a></li>
+										</ul>
+								   </nav>
+								  <!--Header Search Start  here-->
+								   <!--Header Search End  here--> 
+							   </div>
+						   </div>
+						</div>
+					</div>
+				</div>
+            </header>
+        <div class="col-xs-6 col-xs-offset-3">
+                <button data-toggle="collapse" data-target="#demo" style="border-radius: 25px;">Create post</button>
+        </div>    
+            
+
+<div id="demo" class="collapse">
+        <form id="fileUploadForm" method="post" enctype="multipart/form-data">
+                <div class="container">
+                    <div class="col-xs-12 col-md-6 col-md-offset-3">
+                        <input class="form-control" placeholder="Enter Your Name"  type="text" name="myname"  value=""  style="color: black"/>
+                    </div>
+                    <div class="col-xs-12 col-md-12">
+                        <div class="col-xs-8  col-md-6 col-md-offset-3" style="padding: 10px 0; height: 60px;">
+                            <input  class="form-control" placeholder="Enter Verizon Email"   type="text" name="myemail"  value=""  style="color: black"/> 
+                        </div>
+                        <div class="col-xs-4" style="color: white; height: 60px; line-height: 60px; font-size: 10px">@verizonmedia.com</div>
+                    </div>
+                    <div class="col-xs-12"><span style="color: red; font-size:10px"> If you win, your gift card will be sent on this email Id</span></div>
+                    <div class="col-xs-12 col-md-6 col-md-offset-3" style="height: 120px; margin-top: 15px">
+                        <textarea id="mycomment" name="mycomment" style="color: black; width: 100%; height: 100%"></textarea>
+                    </div>
+                    <div class="col-xs-12 col-md-6 col-md-offset-3" style="margin-top: 25px;">
+                        <input type="file" accept="image/*" capture="camera" />
+                        <div class="input-container">
+                            <input type="file" name="fileData" id="fileData">
+                            <button class="browse-btn">
+                                Browse Files
+                            </button>
+                            <span class="file-info">Upload a file</span>
+                            </div>
+                    </div>
+                    <div class="col-xs-12 text-center">
+                        <input  type="submit" style="border-radius: 25px; margin-top: 20px; text-align: center; width: 100px; background: darkgrey;" name="myButton" id="myButton" value="POST">
+                    </div>
+                       
+                </div>
+        </form>
+</div>
+        
+    <span id="result"></span>
+  
+    
+    <div class="container">
+        <div class="" ng-repeat="row in postsArr | orderBy:'-id'" style="border: 1px solid grey; border-radius: 5px; margin: 5% 0;  animation-duration: 3s;">
+            <div style=" display: flex; flex-flow: row wrap; width: 100%;">
+                <div style="flex: 2; padding-left: 5px">
+                    <i ng-show="$storage.likeObject[row.id]"  class="fa fa-heart animated  pulse infinite slower" style="font-size: 22px; color: #C51104" aria-hidden="true"></i> 
+                    <i ng-show="!$storage.likeObject[row.id]"  ng-click="likeClick(row.id)" class="fa fa-heart" style="font-size: 22px; color: grey" aria-hidden="true"></i>
+                </div>
+                <div style="flex: 3">
+                    <span ng-show="row.likes > 0" style="color: white">{{row.likes}}  <span ng-show="row.likes == 1">Like</span> <span ng-show="row.likes > 1">Likes</span></span>
+                </div>
+                <div style="flex: 7; text-align: right; padding-right: 5px"><b style="color:#AFB0B2; display: inline-block;"> <span style="color:#fbc02d"> {{row.fullname}} </span> </b> 
+                </div>
+
+            </div>
+
+            <img src="{{row.file_name}}" class="responsive" width="600" height="400"/>
+            <div style="background-color:white;padding: 5px;color: black;"> <span style="color:black; font-size: 15px; font-family: FANTASY; letter-spacing: 2px;">{{row.postcomment}}</span> </div>
+        </div>
+    </div>
+
+        <!-- <footer id="footer-section" class="footer-section container" style="position: absolute; bottom: 0; width: 100%;">
+                <div class="footer-bottom">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-4 col-sm-6">
+                                <div class="copyright">
+                                    <p>&copy; Developed by  <a href="" target="_blank">Abdullah Abbasi</a>.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </footer>     -->
+		<!-- Latest Video end Here-->
+		
+		<!-- Our Team Start Here-->
+
+        
+        <!-- Gallery Section Start Here-->
+		 <!-- Gallery Section End Here-->
+        
+		<!-- Champion Awards Start Here-->
+		<!-- Champion Awards end Here-->
+		
+		<!-- Our Products Start Here-->
+
+		<!-- Our Products end Here-->
+
+        <!-- Testimonials Sections Start Here-->
+
+        <!-- Testimonials Sections End Here-->
+
+		<!-- Client Logo Section Start Here-->
+
+        <!-- Client Logo Section End Here-->
+		
+		<!-- Footer Start -->
+
+        <!-- Footer End -->
+        
+        
+		<!-- Start scrollUp  -->
+        <div ng-include src="'footer.tpl.html'"></div>
+
+		<div id="return-to-top">
+			<span>Top</span>
+		</div>
+		<!-- End scrollUp  -->
+
+		<!-- all js here -->
+		<!-- jquery latest version -->
+		<script src="js/jquery.min.js"></script>
+		<!-- Menu js -->
+		<script src="js/rsmenu-main.js"></script> 
+		 <!-- jquery-ui js -->
+		<script src="js/jquery-ui.min.js"></script>
+		<!-- bootstrap js -->
+		<script src="js/bootstrap.min.js"></script>
+		<!-- meanmenu js -->
+		<script src="js/jquery.meanmenu.js"></script>
+		<!-- wow js -->
+		<script src="js/wow.min.js"></script>
+		<!-- Slick js -->
+		<script src="js/slick.min.js"></script>
+		<!-- masonry js -->
+		<script src="js/masonry.js"></script>
+		<!-- magnific-popup js -->
+		<!-- owl.carousel js -->
+		<script src="js/owl.carousel.min.js"></script>
+		<script src="js/time-circle.js"></script>
+		<!-- magnific-popup js -->
+		<script src="js/jquery.magnific-popup.js"></script>
+		<!-- main js -->
+        <script src="js/main.js"></script>
+        <script>
+                var uploadButton = document.querySelector('.browse-btn');
+                var fileInfo = document.querySelector('.file-info');
+                var realInput = document.getElementById('fileData');
+                
+                uploadButton.addEventListener('click', (event) => {
+                    event.preventDefault();
+                    event.stopPropagation()
+                    realInput.click();
+                });
+                
+                realInput.addEventListener('change', () => {
+                  const name = realInput.value.split(/\\|\//).pop();
+                  const truncated = name.length > 20 
+                    ? name.substr(name.length - 20) 
+                    : name;
+                  
+                  fileInfo.innerHTML = truncated;
+                });
+        </script>
+        <script> 
+                var modal = document.getElementById('id01'); 
+                window.onclick = function(event) { 
+                    if (event.target == modal) { 
+                        modal.style.display = "none"; 
+                    } 
+                } 
+            </script>
+            <script>
+                    $(document).ready(function () {
+
+                        $("#myButton").click(function (event) {
+                    
+                            //stop submit the form, we will post it manually.
+                            event.preventDefault();
+                    
+                            // Get form
+                            var form = $('#fileUploadForm')[0];
+                    
+                            // Create an FormData object 
+                            var data = new FormData(form);
+                
+                    
+                            // disabled the submit button
+                            $("#myButton").prop("disabled", true);
+                            $("#demo").removeClass("in");
+                            
+                            
+                            $.ajax({
+                                type: "POST",
+                                enctype: 'multipart/form-data',
+                                url: "https://heroku-comserver.herokuapp.com/api/photoUpload",
+                                data: data,
+                                processData: false,
+                                contentType: false,
+                                cache: false,
+                                timeout: 600000,
+                                success: function (data) {
+                    
+                                    $("#result").text(data);
+                                    console.log("SUCCESS : ", data);
+                                    $("#myButton").prop("disabled", false);
+                                    $("#demo").removeClass("in");
+                                    //location.reload();
+
+                                },
+                                error: function (e) {
+                    
+                                    $("#result").text(e.responseText);
+                                    console.log("ERROR : ", e);
+                                    $("#myButton").prop("disabled", false);
+                    
+                                }
+                            });
+                    
+                        });
+                    
+                    });
+            </script>
+	</body>
+</html>
+
